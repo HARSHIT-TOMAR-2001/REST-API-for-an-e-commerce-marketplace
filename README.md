@@ -2,6 +2,7 @@
 Basic Rest apis for an e-commerce marketplace
 
 STEPS TO START:
+
 1-CLONE THE REPO.
 
 2-RUN "npm i" in the terminal.
