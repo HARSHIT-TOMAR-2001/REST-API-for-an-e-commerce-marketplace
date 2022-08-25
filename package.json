@@ -1,0 +1,27 @@
+{
+  "name": "rest-api-for-an-e-commerce-marketplace",
+  "version": "1.0.0",
+  "description": "Basis Rest apis for an e-commerce marketplace",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HARSHIT-TOMAR-2001/REST-API-for-an-e-commerce-marketplace.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HARSHIT-TOMAR-2001/REST-API-for-an-e-commerce-marketplace/issues"
+  },
+  "homepage": "https://github.com/HARSHIT-TOMAR-2001/REST-API-for-an-e-commerce-marketplace#readme",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "mongoose": "^6.5.3",
+    "nodemon": "^2.0.19"
+  }
+}
