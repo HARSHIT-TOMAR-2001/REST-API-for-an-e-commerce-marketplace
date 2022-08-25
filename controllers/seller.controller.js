@@ -5,6 +5,9 @@ const ObjectId = mongoose.Types.ObjectId;
 const jwt=require("jsonwebtoken")
 const bcrypt=require("bcrypt");
 const Seller = require("../models/seller.model");
+const { remove } = require("../models/buyer.model");
+const Catalogue = require("../models/catalogue.model");
+const Order = require("../models/orders.model");
 const register=async(req,res)=>{
     const {name,email,password}=req.body;
     try {
@@ -27,11 +30,11 @@ const register=async(req,res)=>{
                 authToken:token,
             })
             await seller.save();
-         res.status(400).send({msg:"seller succesfully registered",seller:seller})
+         res.status(200).send({success:true,msg:"seller succesfully registered",seller:seller})
         }
           
     } catch (error) {
-        res.status(400).send({msg:error.message})
+        res.status(400).send({success:false,msg:error.message})
     }
 }
 
@@ -60,11 +63,38 @@ const signin=async(req,res)=>{
            res.status(200).send({success:true,seller:updatedseller})
         }
     } catch (error) {
-        res.status(400).send({msg:error.message})
+        res.status(400).send({success:false,msg:error.message})
     }
 }
 
+const createCatalogue=async(req,res)=>{
+    const {sellerId,items}=req.body;
+    try {
+        const remove=await Catalogue.findOneAndDelete({sellerId});
+        const newCatalogue=new Catalogue({
+            sellerId,
+            list:items
+        })
+        await newCatalogue.save();
+        res.status(400).send({success:true,msg:"supplier catalogue updated"})
+    } catch (error) {
+        res.status(400).send({success:false,msg:error.message}) 
+    }
+}
+
+const getallOrders=async(req,res)=>{
+    const id=req.query.seller_id;
+    try {
+
+        const orders=await Order.find({sellerId:id});
+        res.status(200).send({success:true,orders:orders})
+    } catch (error) {
+        res.status(400).send({success:false,msg:error.message}) 
+    }
+}
 module.exports={
     register,
-    signin
+    signin,
+    createCatalogue,
+    getallOrders
 }
